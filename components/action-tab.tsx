@@ -2,6 +2,7 @@
 
 import { ChevronLeftIcon, XIcon } from "lucide-react";
 import { useState } from "react";
+import CustomBtn from "./custom-btn";
 
 type Props = {
   label: string;
@@ -166,48 +167,29 @@ function DashboardPlaceholder({
   onSelect: (label: string) => void;
 }) {
   return (
-    <div className="flex flex-col gap-3 bg-white p-4">
+    <div className="flex flex-col gap-3 bg-white p-4 justify-between space-y-2">
       {/* Logo */}
       <div
-        className="h-40 w-full bg-contain bg-center bg-no-repeat"
+        className="h-20 w-auto bg-contain bg-left bg-no-repeat"
         style={{ backgroundImage: "url('/assets/dashboard/logo.png')" }}
       />
 
-      {/* Banner */}
       <div
-        className="h-48 w-full rounded-2xl bg-cover bg-center bg-no-repeat"
+        className="h-52 w-full rounded-2xl bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/assets/dashboard/banner.jpg')" }}
       />
 
-      {/* Grid — 4 equal-height cells, left 2/3 / right 1/3 */}
       <div
         className="grid grid-cols-3 gap-3"
         style={{ gridTemplateRows: "140px 140px" }}
       >
-        <button
-          type="button"
-          className="col-span-2 rounded-2xl bg-cover bg-center transition-opacity hover:opacity-80"
-          style={{
-            backgroundImage: "url('/assets/dashboard/placeholder.jpg')",
-          }}
-        />
-        <button
-          type="button"
-          className="col-span-1 rounded-2xl bg-cover bg-center transition-opacity hover:opacity-80"
-          style={{ backgroundImage: "url('/assets/dashboard/wallet.png')" }}
-        />
-        <button
-          type="button"
-          className="col-span-2 rounded-2xl bg-cover bg-center transition-opacity hover:opacity-80"
-          style={{
-            backgroundImage: "url('/assets/dashboard/placeholder.jpg')",
-          }}
-        />
-        <button
-          type="button"
+        <CustomBtn url="/assets/dashboard/a.png" className="col-span-2" />
+        <CustomBtn url="/assets/dashboard/wallet.png" className="col-span-1" />
+        <CustomBtn url="/assets/dashboard/b.png" className="col-span-2" />
+        <CustomBtn
+          url="/assets/dashboard/guy.png"
+          className="col-span-1 bg-[#441817]"
           onClick={() => onSelect("Plans")}
-          className="col-span-1 rounded-2xl bg-cover bg-center transition-opacity hover:opacity-80"
-          style={{ backgroundImage: "url('/assets/dashboard/banner-2.jpg')" }}
         />
       </div>
     </div>
