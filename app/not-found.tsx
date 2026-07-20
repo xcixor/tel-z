@@ -10,6 +10,7 @@ function NotFound({}: Props) {
         <div className="flex items-center justify-center flex-col h-full">
           <Image
             src="/assets/plans/tuko-live-logo.png"
+            alt="Tuko Live"
             height={200}
             width={200}
           />
