@@ -13,7 +13,7 @@ function NotFound({}: Props) {
             height={200}
             width={200}
           />
-          <p className="text-xl font-semibold text-gray-700">Not Found</p>
+          <p className="font-display text-xl text-gray-700">Not Found</p>
         </div>
       </div>
     </main>

@@ -1,152 +1,21 @@
 "use client";
 
-import { ChevronLeftIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { ChevronLeftIcon } from "lucide-react";
+import ActionsWrapper from "./actions-wrapper";
 import CustomBtn from "./custom-btn";
+import DataUsageView from "./data-usage/data-usage-view";
+import HudLabel from "./hud/hud-label";
+import PlansFlow from "./plans/plans-flow";
+import ReferralHub from "./referral/referral-hub";
+import SquadHub from "./squad/squad-hub";
+import WalletFlow from "./wallet/wallet-flow";
 
 type Props = {
   label: string;
   onBack: () => void;
   onSelect: (label: string) => void;
+  userName?: string;
 };
-
-/* ─── Plan primitives ─────────────────────────────────────── */
-
-type Plan = {
-  name: string;
-  speed: string;
-  price: string;
-  gradient: string;
-};
-
-const PLANS: Plan[] = [
-  {
-    name: "CHILL",
-    speed: "10mbps",
-    price: "500/=pm",
-    // bronze
-    gradient:
-      "linear-gradient(135deg, #6B3A1F 0%, #C47C3A 25%, #E8B882 50%, #C47C3A 75%, #6B3A1F 100%)",
-  },
-  {
-    name: "FAST",
-    speed: "30mbps",
-    price: "1,000/=pm",
-    // silver
-    gradient:
-      "linear-gradient(135deg, #5A5A5A 0%, #C0C4CC 25%, #F0F2F4 50%, #C0C4CC 75%, #5A5A5A 100%)",
-  },
-  {
-    name: "SUPERSONIC",
-    speed: "80mbps",
-    price: "2,000/=pm",
-    // gold
-    gradient:
-      "linear-gradient(135deg, #7A4F00 0%, #D4A017 25%, #F5D060 50%, #D4A017 75%, #7A4F00 100%)",
-  },
-];
-
-function PlanModal({ plan, onClose }: { plan: Plan; onClose: () => void }) {
-  return (
-    <div
-      className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 p-6"
-      onClick={onClose}
-    >
-      <div
-        className="relative w-full max-w-xs rounded-3xl bg-[#3b1a0e] p-6 shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute right-4 top-4 text-amber-200 hover:text-white"
-        >
-          <XIcon className="h-5 w-5" />
-        </button>
-        <p className="mb-1 text-center text-2xl font-black uppercase tracking-widest text-amber-300">
-          {plan.name}
-        </p>
-        <p className="mb-4 text-center text-sm text-amber-100/70">
-          {plan.speed} @ {plan.price}
-        </p>
-        <button
-          type="button"
-          className="w-full rounded-full bg-gradient-to-r from-amber-400 to-yellow-300 py-3 font-bold uppercase tracking-wide text-[#3b1a0e] shadow-lg transition hover:opacity-90"
-        >
-          Subscribe
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function PlanButton({
-  plan,
-  onSelect,
-}: {
-  plan: Plan;
-  onSelect: (plan: Plan) => void;
-}) {
-  return (
-    /* cream outer ring */
-    <button
-      type="button"
-      onClick={() => onSelect(plan)}
-      className="w-full rounded-full p-[5px] shadow-xl transition hover:scale-[1.02] active:scale-[0.98]"
-      style={{ background: "#F0EAB0" }}
-    >
-      {/* metallic inner pill */}
-      <div
-        className="flex h-20 w-full flex-col items-center justify-center rounded-full"
-        style={{ background: plan.gradient }}
-      >
-        <span
-          className="text-2xl font-black uppercase leading-none tracking-widest text-[#3b1a0e]"
-          style={{ textShadow: "0 1px 2px rgba(255,255,255,0.35)" }}
-        >
-          {plan.name}
-        </span>
-        <span className="mt-1 text-sm font-semibold text-[#3b1a0e]/80">
-          {plan.speed} @ {plan.price}
-        </span>
-      </div>
-    </button>
-  );
-}
-
-function PlansTab() {
-  const [selected, setSelected] = useState<Plan | null>(null);
-
-  return (
-    <div
-      className="relative flex flex-1 flex-col items-center justify-between overflow-hidden rounded-none bg-cover bg-center p-6"
-      style={{ backgroundImage: "url('/assets/dashboard/placeholder.jpg')" }}
-    >
-      {/* dark overlay */}
-      <div className="absolute inset-0 bg-[#3b1a0e]/80" />
-
-      {/* Tuko Live logo */}
-      <div
-        className="relative z-10 h-36 w-full bg-contain bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/plans/tuko-live-logo.png')" }}
-      />
-
-      {/* Plan buttons */}
-      <div className="relative z-10 flex w-full flex-col gap-4">
-        {PLANS.map((plan) => (
-          <PlanButton key={plan.name} plan={plan} onSelect={setSelected} />
-        ))}
-      </div>
-
-      {/* Modal */}
-      {selected && (
-        <PlanModal plan={selected} onClose={() => setSelected(null)} />
-      )}
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────── */
 
 function BackButton({ onBack }: { onBack: () => void }) {
   return (
@@ -163,11 +32,17 @@ function BackButton({ onBack }: { onBack: () => void }) {
 
 function DashboardPlaceholder({
   onSelect,
+  userName,
 }: {
   onSelect: (label: string) => void;
+  userName?: string;
 }) {
   return (
-    <div className="flex flex-col gap-3 bg-white p-4 justify-between space-y-2">
+    <div className="flex h-full flex-col gap-3 overflow-y-auto bg-white p-4 justify-between space-y-2">
+      <HudLabel className="text-slate-400">
+        {`HEY ${(userName || "THERE").toUpperCase()}`}
+      </HudLabel>
+
       {/* Logo */}
       <div
         className="h-20 w-auto bg-contain bg-left bg-no-repeat"
@@ -183,14 +58,31 @@ function DashboardPlaceholder({
         className="grid grid-cols-3 gap-3"
         style={{ gridTemplateRows: "140px 140px" }}
       >
-        <CustomBtn url="/assets/dashboard/a.png" className="col-span-2" />
-        <CustomBtn url="/assets/dashboard/wallet.png" className="col-span-1" />
-        <CustomBtn url="/assets/dashboard/b.png" className="col-span-2" />
+        <CustomBtn
+          url="/assets/dashboard/a.png"
+          className="col-span-2"
+          onClick={() => onSelect("Referral")}
+        />
+        <CustomBtn
+          url="/assets/dashboard/wallet.png"
+          className="col-span-1"
+          onClick={() => onSelect("Wallet")}
+        />
+        <CustomBtn
+          url="/assets/dashboard/b.png"
+          className="col-span-2"
+          onClick={() => onSelect("Squad")}
+        />
         <CustomBtn
           url="/assets/dashboard/guy.png"
           className="col-span-1 bg-[#441817]"
           onClick={() => onSelect("Plans")}
         />
+      </div>
+
+      <div>
+        <HudLabel className="mb-2 text-slate-400">MENU</HudLabel>
+        <ActionsWrapper onSelect={onSelect} />
       </div>
     </div>
   );
@@ -199,38 +91,43 @@ function DashboardPlaceholder({
 function ActionBody({
   label,
   onSelect,
+  onBack,
+  userName,
 }: {
   label: string;
   onSelect: (label: string) => void;
+  onBack: () => void;
+  userName?: string;
 }) {
   switch (label) {
     case "Dashboard":
-      return <DashboardPlaceholder onSelect={onSelect} />;
+      return <DashboardPlaceholder onSelect={onSelect} userName={userName} />;
     case "Data":
-      return (
-        <div className="flex flex-1 items-center justify-center rounded-lg bg-white p-4 text-sm text-slate-500">
-          <p>
-            Here you can manage your data. Upload, download, and analyze your
-            datasets.
-          </p>
-        </div>
-      );
+      return <DataUsageView />;
     case "Reports":
       return (
-        <div className="flex flex-1 items-center justify-center rounded-lg bg-white p-4 text-sm text-slate-500">
+        <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg bg-white p-4 text-center text-sm text-slate-500">
+          <HudLabel className="text-slate-400">REPORTS</HudLabel>
           <p>Generate and view reports based on your data and activities.</p>
         </div>
       );
     case "Settings":
       return (
-        <div className="flex flex-1 items-center justify-center rounded-lg bg-white p-4 text-sm text-slate-500">
+        <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg bg-white p-4 text-center text-sm text-slate-500">
+          <HudLabel className="text-slate-400">SETTINGS</HudLabel>
           <p>
             Adjust your preferences and configure the application settings here.
           </p>
         </div>
       );
     case "Plans":
-      return <PlansTab />;
+      return <PlansFlow onExit={onBack} />;
+    case "Wallet":
+      return <WalletFlow onExit={onBack} />;
+    case "Referral":
+      return <ReferralHub onExit={onBack} />;
+    case "Squad":
+      return <SquadHub onExit={onBack} />;
     default:
       return (
         <div className="flex flex-1 items-center justify-center rounded-lg bg-white p-4 text-sm text-slate-500">
@@ -240,11 +137,25 @@ function ActionBody({
   }
 }
 
-function ActionTab({ label, onBack, onSelect }: Props) {
+function ActionTab({ label, onBack, onSelect, userName }: Props) {
+  // Plans, Wallet, Referral, and Squad each own their own back/close chrome.
+  const showGenericBackButton = ![
+    "Dashboard",
+    "Plans",
+    "Wallet",
+    "Referral",
+    "Squad",
+  ].includes(label);
+
   return (
     <div className="flex h-full w-full flex-col transition-all duration-300">
-      {label !== "Dashboard" && <BackButton onBack={onBack} />}
-      <ActionBody label={label} onSelect={onSelect} />
+      {showGenericBackButton && <BackButton onBack={onBack} />}
+      <ActionBody
+        label={label}
+        onSelect={onSelect}
+        onBack={onBack}
+        userName={userName}
+      />
     </div>
   );
 }
