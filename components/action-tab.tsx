@@ -59,7 +59,7 @@ function DashboardPlaceholder({
         style={{ gridTemplateRows: "140px 140px" }}
       >
         <CustomBtn
-          url="/assets/dashboard/a.png"
+          url="/assets/dashboard/invite.png"
           className="col-span-2"
           onClick={() => onSelect("Referral")}
         />
@@ -69,7 +69,7 @@ function DashboardPlaceholder({
           onClick={() => onSelect("Wallet")}
         />
         <CustomBtn
-          url="/assets/dashboard/b.png"
+          url="/assets/dashboard/tabs.png"
           className="col-span-2"
           onClick={() => onSelect("Squad")}
         />
