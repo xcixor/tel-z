@@ -3,11 +3,10 @@ import React from "react";
 
 type Props = {
   Icon: LucideIcon;
-  label: string;
   onClick: () => void;
 };
 
-function Action({ Icon, label, onClick }: Props) {
+function Action({ Icon, onClick }: Props) {
   return (
     <button
       type="button"

@@ -64,7 +64,7 @@ function PlanList({ onSelect, onBack }: Props) {
 
       <HudLabel className="relative z-10 mb-2">SELECT_PLAN</HudLabel>
 
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-between">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center">
         {/* Tuko Live logo */}
         <div
           className="h-36 w-full bg-contain bg-center bg-no-repeat"

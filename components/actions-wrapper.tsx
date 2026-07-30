@@ -39,7 +39,6 @@ function ActionsWrapper({ onSelect }: Props) {
         <Action
           key={action.label}
           Icon={action.icon}
-          label={action.label}
           onClick={() => onSelect(action.label)}
         />
       ))}
