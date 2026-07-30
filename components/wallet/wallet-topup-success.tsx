@@ -29,6 +29,7 @@ function WalletTopUpSuccess({
             src="/assets/dashboard/wallet.png"
             alt="TLZ Wallet"
             fill
+            sizes="160px"
             className="object-contain opacity-60"
           />
         </div>

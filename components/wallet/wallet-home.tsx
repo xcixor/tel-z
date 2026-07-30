@@ -69,6 +69,7 @@ function WalletHome({ balance, transactions, onBack, onLoadWallet }: Props) {
               src="/assets/dashboard/wallet.png"
               alt="TLZ Wallet"
               fill
+              sizes="96px"
               className="object-contain"
             />
           </div>

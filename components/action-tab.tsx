@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeftIcon } from "lucide-react";
+import Image from "next/image";
 import ActionsWrapper from "./actions-wrapper";
 import CustomBtn from "./custom-btn";
 import DataUsageView from "./data-usage/data-usage-view";
@@ -45,17 +46,29 @@ function DashboardPlaceholder({
       </HudLabel>
 
       {/* Logo */}
-      <div
-        className="h-20 w-auto bg-contain bg-left bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/dashboard/logo.png')" }}
-      />
+      <div className="relative h-20 w-20">
+        <Image
+          src="/assets/dashboard/logo.png"
+          alt="Tel Z"
+          fill
+          sizes="80px"
+          className="object-contain object-left"
+        />
+      </div>
 
       <button
         type="button"
         onClick={() => onSelect("Plans")}
-        className="h-52 w-full cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat transition-opacity hover:opacity-90"
-        style={{ backgroundImage: "url('/assets/dashboard/banner.jpg')" }}
-      />
+        className="relative h-52 w-full cursor-pointer overflow-hidden rounded-2xl transition-opacity hover:opacity-90"
+      >
+        <Image
+          src="/assets/dashboard/banner.jpg"
+          alt="No hidden fees. No Okoa debts. Just flat-rate data."
+          fill
+          sizes="(max-width: 640px) 100vw, 390px"
+          className="object-cover"
+        />
+      </button>
 
       <div
         className="grid grid-cols-3 gap-3"

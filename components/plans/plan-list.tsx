@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeftIcon } from "lucide-react";
+import Image from "next/image";
 
 import HudLabel from "../hud/hud-label";
 import { Plan, PLANS } from "./types";
@@ -46,10 +47,15 @@ type Props = {
 
 function PlanList({ onSelect, onBack }: Props) {
   return (
-    <div
-      className="relative flex h-full flex-1 flex-col overflow-hidden rounded-none bg-cover bg-center p-6"
-      style={{ backgroundImage: "url('/assets/dashboard/placeholder.jpg')" }}
-    >
+    <div className="relative flex h-full flex-1 flex-col overflow-hidden rounded-none p-6">
+      <Image
+        src="/assets/dashboard/placeholder.jpg"
+        alt=""
+        fill
+        sizes="(max-width: 640px) 100vw, 390px"
+        className="object-cover"
+      />
+
       {/* dark overlay */}
       <div className="absolute inset-0 bg-[#3b1a0e]/80" />
 
@@ -66,10 +72,15 @@ function PlanList({ onSelect, onBack }: Props) {
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center">
         {/* Tuko Live logo */}
-        <div
-          className="h-36 w-full bg-contain bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/assets/plans/tuko-live-logo.png')" }}
-        />
+        <div className="relative h-36 w-full">
+          <Image
+            src="/assets/plans/tuko-live-logo.png"
+            alt="Tuko Live"
+            fill
+            sizes="(max-width: 640px) 100vw, 390px"
+            className="object-contain"
+          />
+        </div>
 
         {/* Plan buttons */}
         <div className="flex w-full flex-col gap-4">

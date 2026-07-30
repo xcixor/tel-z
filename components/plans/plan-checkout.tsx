@@ -40,10 +40,15 @@ function PlanCheckout({ plan, onBack, onPurchased }: Props) {
 
       <HudLabel className="mb-2">CHECKOUT</HudLabel>
 
-      <div
-        className="mb-4 h-24 w-full bg-contain bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/plans/tuko-live-logo.png')" }}
-      />
+      <div className="relative mb-4 h-24 w-full">
+        <Image
+          src="/assets/plans/tuko-live-logo.png"
+          alt="Tuko Live"
+          fill
+          sizes="(max-width: 640px) 100vw, 390px"
+          className="object-contain"
+        />
+      </div>
 
       {/* selected plan pill */}
       <div className="w-full rounded-full p-[5px] shadow-xl" style={{ background: "#F0EAB0" }}>
@@ -76,6 +81,7 @@ function PlanCheckout({ plan, onBack, onPurchased }: Props) {
           src="/assets/dashboard/wallet.png"
           alt="TLZ Wallet"
           fill
+          sizes="160px"
           className="object-contain"
         />
       </div>

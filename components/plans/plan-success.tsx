@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckIcon } from "lucide-react";
+import Image from "next/image";
 
 import HudLabel from "../hud/hud-label";
 import { PaymentMethod } from "../payment-methods";
@@ -17,10 +18,15 @@ function PlanSuccess({ plan, paymentMethod, onExit }: Props) {
     <div className="flex h-full flex-1 flex-col items-center justify-center gap-6 bg-[#3b1a0e] p-6">
       <HudLabel className="self-start">COMPLETE</HudLabel>
 
-      <div
-        className="mb-2 h-24 w-full bg-contain bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/plans/tuko-live-logo.png')" }}
-      />
+      <div className="relative mb-2 h-24 w-full">
+        <Image
+          src="/assets/plans/tuko-live-logo.png"
+          alt="Tuko Live"
+          fill
+          sizes="(max-width: 640px) 100vw, 390px"
+          className="object-contain"
+        />
+      </div>
 
       {/* selected plan pill, dimmed under the completed card */}
       <div className="relative w-full">

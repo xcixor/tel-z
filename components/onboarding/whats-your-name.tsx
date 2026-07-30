@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import HudLabel from "../hud/hud-label";
@@ -21,10 +22,15 @@ function WhatsYourName({ onComplete }: Props) {
     <div className="flex h-full flex-1 flex-col items-center justify-center gap-6 bg-[#3b1a0e] p-6">
       <HudLabel className="self-start">WELCOME</HudLabel>
 
-      <div
-        className="h-24 w-full bg-contain bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/plans/tuko-live-logo.png')" }}
-      />
+      <div className="relative h-24 w-full">
+        <Image
+          src="/assets/plans/tuko-live-logo.png"
+          alt="Tuko Live"
+          fill
+          sizes="(max-width: 640px) 100vw, 390px"
+          className="object-contain"
+        />
+      </div>
 
       <div className="text-center">
         <p className="font-display text-2xl uppercase tracking-wide text-white">

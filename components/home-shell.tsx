@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import BodyWrapper from "./body-wrapper";
@@ -42,13 +43,15 @@ function HomeShell() {
                 type="button"
                 onClick={() => setIsChatOpen(true)}
                 className="absolute bottom-4 right-4 h-16 w-16 cursor-pointer bg-transparent p-0"
-                style={{
-                  backgroundImage: "url('/assets/bot/bot.png')",
-                  backgroundSize: "contain",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                }}
-              />
+              >
+                <Image
+                  src="/assets/bot/bot.png"
+                  alt="Chat with Plug"
+                  fill
+                  sizes="64px"
+                  className="object-contain"
+                />
+              </button>
             )}
           </>
         )}

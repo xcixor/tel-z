@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckIcon, Loader2Icon } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import HudLabel from "../hud/hud-label";
@@ -30,10 +31,15 @@ function VerifyingSim({ onNext }: Props) {
     <div className="flex h-full flex-1 flex-col items-center justify-center gap-6 bg-[#3b1a0e] p-6">
       <HudLabel className="self-start">VERIFYING_SIM</HudLabel>
 
-      <div
-        className="h-24 w-full bg-contain bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/plans/tuko-live-logo.png')" }}
-      />
+      <div className="relative h-24 w-full">
+        <Image
+          src="/assets/plans/tuko-live-logo.png"
+          alt="Tuko Live"
+          fill
+          sizes="(max-width: 640px) 100vw, 390px"
+          className="object-contain"
+        />
+      </div>
 
       <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-amber-300/40">
         {isActivated ? (

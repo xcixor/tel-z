@@ -47,6 +47,7 @@ function WalletTopUp({ onBack, onTopUp }: Props) {
           src="/assets/dashboard/wallet.png"
           alt="TLZ Wallet"
           fill
+          sizes="160px"
           className="object-contain"
         />
       </div>
