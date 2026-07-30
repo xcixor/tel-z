@@ -7,6 +7,7 @@ import DataUsageView from "./data-usage/data-usage-view";
 import HudLabel from "./hud/hud-label";
 import PlansFlow from "./plans/plans-flow";
 import ReferralHub from "./referral/referral-hub";
+import ReportsView from "./reports/reports-view";
 import SquadHub from "./squad/squad-hub";
 import WalletFlow from "./wallet/wallet-flow";
 
@@ -49,8 +50,10 @@ function DashboardPlaceholder({
         style={{ backgroundImage: "url('/assets/dashboard/logo.png')" }}
       />
 
-      <div
-        className="h-52 w-full rounded-2xl bg-cover bg-center bg-no-repeat"
+      <button
+        type="button"
+        onClick={() => onSelect("Plans")}
+        className="h-52 w-full cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat transition-opacity hover:opacity-90"
         style={{ backgroundImage: "url('/assets/dashboard/banner.jpg')" }}
       />
 
@@ -105,12 +108,7 @@ function ActionBody({
     case "Data":
       return <DataUsageView />;
     case "Reports":
-      return (
-        <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg bg-white p-4 text-center text-sm text-slate-500">
-          <HudLabel className="text-slate-400">REPORTS</HudLabel>
-          <p>Generate and view reports based on your data and activities.</p>
-        </div>
-      );
+      return <ReportsView onExit={onBack} />;
     case "Settings":
       return (
         <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg bg-white p-4 text-center text-sm text-slate-500">
@@ -138,13 +136,14 @@ function ActionBody({
 }
 
 function ActionTab({ label, onBack, onSelect, userName }: Props) {
-  // Plans, Wallet, Referral, and Squad each own their own back/close chrome.
+  // Plans, Wallet, Referral, Squad, and Reports each own their own back/close chrome.
   const showGenericBackButton = ![
     "Dashboard",
     "Plans",
     "Wallet",
     "Referral",
     "Squad",
+    "Reports",
   ].includes(label);
 
   return (

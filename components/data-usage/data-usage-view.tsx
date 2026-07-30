@@ -1,6 +1,7 @@
 "use client";
 
 import HudLabel from "../hud/hud-label";
+import SpeedGauge from "./speed-gauge";
 
 const WEEKLY_USAGE = [
   { day: "Mon", gb: 3.2 },
@@ -18,6 +19,12 @@ const LIVE_STATS = [
   { label: "DOWNLOAD", value: "42Mbps" },
   { label: "UPLOAD", value: "18Mbps" },
   { label: "PING", value: "12ms" },
+];
+
+const INTERNET_STATS = [
+  { label: "UPTIME", value: "99.8%" },
+  { label: "AVG LATENCY", value: "38ms" },
+  { label: "PEAK SPEED", value: "76Mbps" },
 ];
 
 function DataUsageView() {
@@ -45,6 +52,29 @@ function DataUsageView() {
             <HudLabel className="mt-1 text-slate-400">{stat.label}</HudLabel>
           </div>
         ))}
+      </div>
+
+      {/* speed test */}
+      <SpeedGauge />
+
+      {/* internet stats */}
+      <div>
+        <HudLabel className="mb-2 text-slate-400">INTERNET_STATS</HudLabel>
+        <div className="grid grid-cols-3 gap-2">
+          {INTERNET_STATS.map((stat) => (
+            <div
+              key={stat.label}
+              className="rounded-xl border border-slate-200 bg-slate-50 px-2 py-3 text-center"
+            >
+              <p className="font-display text-lg text-orange-500">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-[10px] uppercase leading-tight tracking-wide text-slate-400">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* 7-day bar chart */}
