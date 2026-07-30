@@ -16,6 +16,13 @@ function HomeShell() {
   const [hasOnboarded, setHasOnboarded] = useState(false);
   const [userName, setUserName] = useState("");
 
+  function handleLogout() {
+    setHasOnboarded(false);
+    setUserName("");
+    setSelectedAction(DEFAULT_ACTION);
+    setIsChatOpen(false);
+  }
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-200">
       <CornerFrame className="h-screen w-full overflow-hidden bg-white shadow-2xl sm:h-[676px] sm:w-[390px] sm:rounded-3xl">
@@ -36,13 +43,14 @@ function HomeShell() {
                 onSelect={setSelectedAction}
                 onBack={() => setSelectedAction(DEFAULT_ACTION)}
                 userName={userName}
+                onLogout={handleLogout}
               />
             )}
             {!isChatOpen && (
               <button
                 type="button"
                 onClick={() => setIsChatOpen(true)}
-                className="absolute bottom-4 right-4 h-16 w-16 cursor-pointer bg-transparent p-0"
+                className="absolute bottom-2 right-0 h-16 w-16 cursor-pointer bg-transparent p-0"
               >
                 <Image
                   src="/assets/bot/bot.png"

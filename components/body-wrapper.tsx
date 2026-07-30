@@ -7,9 +7,16 @@ type Props = {
   onSelect: (label: string) => void;
   onBack: () => void;
   userName?: string;
+  onLogout: () => void;
 };
 
-function BodyWrapper({ selectedAction, onSelect, onBack, userName }: Props) {
+function BodyWrapper({
+  selectedAction,
+  onSelect,
+  onBack,
+  userName,
+  onLogout,
+}: Props) {
   if (!selectedAction) {
     return (
       <div className="flex h-full items-center justify-center rounded-2xl bg-slate-50 p-6 text-center text-slate-500">
@@ -25,6 +32,7 @@ function BodyWrapper({ selectedAction, onSelect, onBack, userName }: Props) {
         onBack={onBack}
         onSelect={onSelect}
         userName={userName}
+        onLogout={onLogout}
       />
     </div>
   );

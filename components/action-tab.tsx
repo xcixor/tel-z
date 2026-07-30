@@ -9,6 +9,7 @@ import HudLabel from "./hud/hud-label";
 import PlansFlow from "./plans/plans-flow";
 import ReferralHub from "./referral/referral-hub";
 import ReportsView from "./reports/reports-view";
+import SettingsView from "./settings/settings-view";
 import SquadHub from "./squad/squad-hub";
 import WalletFlow from "./wallet/wallet-flow";
 
@@ -17,6 +18,7 @@ type Props = {
   onBack: () => void;
   onSelect: (label: string) => void;
   userName?: string;
+  onLogout: () => void;
 };
 
 function BackButton({ onBack }: { onBack: () => void }) {
@@ -109,11 +111,13 @@ function ActionBody({
   onSelect,
   onBack,
   userName,
+  onLogout,
 }: {
   label: string;
   onSelect: (label: string) => void;
   onBack: () => void;
   userName?: string;
+  onLogout: () => void;
 }) {
   switch (label) {
     case "Dashboard":
@@ -124,12 +128,12 @@ function ActionBody({
       return <ReportsView onExit={onBack} />;
     case "Settings":
       return (
-        <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-lg bg-white p-4 text-center text-sm text-slate-500">
-          <HudLabel className="text-slate-400">SETTINGS</HudLabel>
-          <p>
-            Adjust your preferences and configure the application settings here.
-          </p>
-        </div>
+        <SettingsView
+          userName={userName}
+          onBack={onBack}
+          onSelect={onSelect}
+          onLogout={onLogout}
+        />
       );
     case "Plans":
       return <PlansFlow onExit={onBack} />;
@@ -148,8 +152,8 @@ function ActionBody({
   }
 }
 
-function ActionTab({ label, onBack, onSelect, userName }: Props) {
-  // Plans, Wallet, Referral, Squad, and Reports each own their own back/close chrome.
+function ActionTab({ label, onBack, onSelect, userName, onLogout }: Props) {
+  // Plans, Wallet, Referral, Squad, Reports, and Settings each own their own back/close chrome.
   const showGenericBackButton = ![
     "Dashboard",
     "Plans",
@@ -157,6 +161,7 @@ function ActionTab({ label, onBack, onSelect, userName }: Props) {
     "Referral",
     "Squad",
     "Reports",
+    "Settings",
   ].includes(label);
 
   return (
@@ -167,6 +172,7 @@ function ActionTab({ label, onBack, onSelect, userName }: Props) {
         onSelect={onSelect}
         onBack={onBack}
         userName={userName}
+        onLogout={onLogout}
       />
     </div>
   );
